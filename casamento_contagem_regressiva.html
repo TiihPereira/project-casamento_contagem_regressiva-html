@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contagem Regressiva para o Casamento</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      color: #fff;
+      text-align: center;
+      background-image: url('NossoCasamento.jpg');
+      background-size: cover;
+      background-position: center;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
+      margin-bottom: 20px;
+    }
+
+    #contador {
+      font-size: 1.5em;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(255, 0, 128, 0.4);
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.8em;
+      }
+      #contador {
+        font-size: 1.2em;
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>💍 Contagem Regressiva para o Nosso Casamento 💖</h1>
+  <div id="contador">Carregando...</div>
+
+  <script>
+    const dataCasamento = new Date(2025, 6, 29, 9, 0, 0); // 29 de julho de 2025 às 09:00
+
+    function atualizarContador() {
+      const agora = new Date();
+      const diferenca = dataCasamento - agora;
+
+      if (diferenca <= 0) {
+        document.getElementById("contador").innerHTML = "🎉 É hoje! Chegou o grande dia! 🎉";
+        return;
+      }
+
+      const dias = Math.floor(diferenca / (1000 * 60 * 60 * 24));
+      const horas = Math.floor((diferenca / (1000 * 60 * 60)) % 24);
+      const minutos = Math.floor((diferenca / (1000 * 60)) % 60);
+      const segundos = Math.floor((diferenca / 1000) % 60);
+
+      document.getElementById("contador").innerHTML =
+        `${dias} dias, ${horas} horas, ${minutos} minutos e ${segundos} segundos`;
+    }
+
+    atualizarContador();
+    setInterval(atualizarContador, 1000);
+  </script>
+</body>
+</html>
